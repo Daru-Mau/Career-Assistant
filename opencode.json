@@ -1,0 +1,31 @@
+{
+  "$schema": "https://opencode.ai/config.json",
+  "instructions": [
+    "docs/context/architecture.md",
+    "docs/context/conventions.md",
+    "docs/context/decisions.md",
+    "docs/context/glossary.md",
+    "docs/context/workflow.md",
+    "docs/context/known-errors.md"
+  ],
+  "permission": {
+    "read": "allow",
+    "glob": "allow",
+    "grep": "allow",
+    "list": "allow",
+    "external_directory": "ask",
+    "bash": {
+      "*": "ask",
+      "mkdir *": "ask",
+      "mkdir *applications/*": "allow",
+      "mkdir *job_offers/*": "allow",
+      "mkdir *tracking/*": "allow"
+    },
+    "edit": {
+      "*": "ask",
+      "applications/**": "allow",
+      "job_offers/**": "allow",
+      "tracking/**": "allow"
+    }
+  }
+}

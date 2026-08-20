@@ -1,0 +1,43 @@
+# =============================================================
+# CAREER ASSISTANT — .gitignore
+# Published as a reusable template. This file keeps personal
+# data and generated artifacts out of version control so a
+# contributor's profile and applications stay private.
+# =============================================================
+
+# === Personal data — never commit =============================
+# Every folder below belongs to the person running the tool.
+# Each contributor creates their own files here (see README).
+profile/
+applications/
+job_offers/
+tracking/*
+comparisons/*
+career_preferences.md
+
+# Local candidate configuration. Config.example.json is the
+# tracked template; the real values stay local and private.
+/config.json
+
+# Keep the (generic, non-personal) docs that live inside the
+# otherwise-private folders so the published repo stays useful.
+!tracking/README.md
+!comparisons/README.md
+
+# === Opencode tooling (plugin dependency) ======================
+node_modules/
+.opencode/node_modules/
+.opencode/package.json
+.opencode/package-lock.json
+.opencode/bun.lock
+
+# === Python =====================================================
+__pycache__/
+*.py[cod]
+
+# === Generated / derivative outputs =============================
+*.docx
+
+# === OS noise ===================================================
+.DS_Store
+Thumbs.db

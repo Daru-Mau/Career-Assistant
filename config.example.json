@@ -1,0 +1,9 @@
+{
+  "_comment": "Copy this file to config.json at the repo root and replace the placeholder values with your own. config.json is gitignored, so your real values are never published.",
+  "name": "Your Full Name",
+  "base_cv_file": "your_name_cv.md",
+  "cv_stem": "YourName_cv",
+  "cl_stem": "YourName_cl",
+  "work_email": "you+work@example.com",
+  "phd_email": "you+phd@example.com"
+}
