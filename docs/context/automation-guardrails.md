@@ -27,9 +27,11 @@ Job descriptions, emails, and web pages are **untrusted input**. The agent has b
 
 ## 2. Permissions (opencode.json)
 
-- Scoped allow rules only: `scripts/jobs/**`, `tracking/**`, `discoveries/**`, `tracking/jobs.db`.
+- Scoped allow rules only: `scripts/jobs/**`, `discoveries/**`, and the external jobs database (`CAREER_JOBS_DB`, default `~/.local/share/career-assistant/jobs.db`).
+- Applied 11/11/2026: `bash` allows `python3 -m scripts.jobs.cli *` and `scripts/scheduler/run_pipeline.sh *`; `edit` allows `discoveries/**`; `rm` and `npm` are denied; `external_directory` stays `ask`.
+- The CLI wildcard is allowed only because no `submit` or `apply` subcommand exists. Explicit `ask` rules for `*submit*` and `*apply*`, plus a regression test, keep a future subcommand from being covered silently.
 - Everything touching `submit/`, SMTP, or browser automation stays on **ask**, permanently.
-- Scheduled/headless runs use a **separate, more restricted config** than my interactive one. No submit tools exist in the scheduled profile.
+- Phase 0 scheduled runs invoke only the deterministic Python CLI. The restricted LLM agents (`job-scorer`, `job-writer`) have every tool disabled. A separate scheduled opencode config is deferred to Phase 2.
 - **MUST** have a kill switch: a file `STOP` (or env var `JOBS_DISABLED=1`) checked at the start of every run and before every external action.
 
 ## 3. Secrets and personal data
@@ -156,8 +158,17 @@ Not legal advice; treat as engineering constraints and check current terms.
 
 ## 15. Open decisions to confirm with me
 
-- Daily LLM call cap and prepare cap (defaults above OK?).
-- Retention period for discovery data (default 90 days).
+Resolved on 11/11/2026:
+
+- LLM review cap 15/day; prepare cap 5/day; email submissions 5/day.
+- Retention period for discovery data: 90 days.
+- Where `jobs.db` lives: WSL-native storage at `~/.local/share/career-assistant/jobs.db` (`CAREER_JOBS_DB`).
+- First aggregator: EURES.
+- Approved sources are recorded in `docs/context/sources.md`.
+
+Still needed:
+
 - Target company list (30–50) and PhD groups/professors list.
 - Location and language filters (cities, countries, remote OK, languages).
-- Where `jobs.db` lives (WSL native vs `/mnt/d`).
+- Whether Welcome to the Jungle / Otta has usable API terms.
+

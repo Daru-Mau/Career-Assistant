@@ -6,7 +6,8 @@
     "docs/context/decisions.md",
     "docs/context/glossary.md",
     "docs/context/workflow.md",
-    "docs/context/known-errors.md"
+    "docs/context/known-errors.md",
+    "docs/context/automation-guardrails.md"
   ],
   "permission": {
     "read": "allow",
@@ -19,13 +20,20 @@
       "mkdir *": "ask",
       "mkdir *applications/*": "allow",
       "mkdir *job_offers/*": "allow",
-      "mkdir *tracking/*": "allow"
+      "mkdir *tracking/*": "allow",
+      "python3 -m scripts.jobs.cli *": "allow",
+      "scripts/scheduler/run_pipeline.sh *": "allow",
+      "python3 -m scripts.jobs.cli *submit*": "ask",
+      "python3 -m scripts.jobs.cli *apply*": "ask",
+      "rm *": "deny",
+      "npm *": "deny"
     },
     "edit": {
       "*": "ask",
       "applications/**": "allow",
       "job_offers/**": "allow",
-      "tracking/**": "allow"
+      "tracking/**": "allow",
+      "discoveries/**": "allow"
     }
   }
 }

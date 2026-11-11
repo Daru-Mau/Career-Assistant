@@ -40,8 +40,8 @@ A markdown knowledge base for job applications. No code runtime, no tests, no bu
 ## What does NOT exist
 
 - No CI/CD, no automated tests, no linting, no package manager runtime (script dependencies are Python standard library + pymupdf)
-- No automation beyond opencode commands (except scripts/build_cv.py, which renders HTML and PDFs via Edge headless)
-- No database, no API, no frontend
+- No automation beyond opencode commands, `scripts/build_cv.py` (HTML/PDF via Edge headless), and the Phase 0 `scripts/jobs/` discovery foundation (no source adapters yet)
+- No application database, no API, no frontend; the discovery pipeline uses a local SQLite staging DB (Phase 0)
 - Optional git repository; if published, .gitignore keeps profile/, applications/, job_offers/, tracking/, comparisons/, career_preferences.md and config.json private
 - No cover letter template for some roles; templates/cover_letter_template.html serves every application and templates/cover_letter.md is always authored and rendered
 
@@ -52,6 +52,29 @@ A markdown knowledge base for job applications. No code runtime, no tests, no bu
 - `JobTracker_backup.xlsx` — fallback export, the only Excel artifact present today
 - `JobTracker.xlsm` — outdated, created in a previous iteration, not used
 
+## Job discovery foundation (Phase 0)
+
+`scripts/jobs/` is the staging pipeline for automated discovery. It is governed
+by `docs/context/automation-guardrails.md` and never creates `job_offers/` or
+`applications/` folders and never touches the tracker.
+
+- `cli.py` - `status`, `scan`, `report`, `purge`, `filters`
+- `config.py` - paths, caps, kill switch (`STOP` file or `JOBS_DISABLED`)
+- `db.py` - SQLite in WSL-native storage, WAL, migrations, scan log, source health
+- `models.py` - canonical record and the enforced status machine
+- `normalize.py` - canonical URLs, company/title/location normalization, dedup, hidden-text stripping
+- `filters.py` - hard filters, graduate patterns, stale and scam detection
+- `report.py` - JSONL logs, redaction, `discoveries/YYYY-MM-DD.md`
+- `sources/base.py` - adapter contract; adapters arrive in Phase 1
+- `submit/base.py` - submission interface only; implementations arrive later
+- `scripts/scheduler/run_pipeline.sh` - Task Scheduler entry point
+- `.opencode/agents/job-scorer.md`, `.opencode/agents/job-writer.md` - tool-less LLM agents
+
+The database lives at `~/.local/share/career-assistant/jobs.db` by default
+(`CAREER_JOBS_DB`), outside the repo. Discovery artifacts, `job_sources.json`,
+tokens, and browser profiles are gitignored.
+
 ## Pending
 
 - [RESOLVED: .opencode/.gitignore contents] inspected 31/07/2026: ignores node_modules, package.json, package-lock.json, bun.lock, .gitignore. A @opencode-ai/plugin dependency exists in package.json but no plugin is configured in opencode.json; currently inert.
+- [RESOLVED: Phase 0 permissions] applied 11/11/2026: scoped `bash` allow for `python3 -m scripts.jobs.cli *` and `run_pipeline.sh *`, `edit` allow for `discoveries/**`, `rm`/`npm` denied. `submit`/`apply` are explicit `ask` rules and a regression test prevents them entering the CLI wildcard.

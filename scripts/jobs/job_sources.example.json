@@ -1,0 +1,65 @@
+{
+  "queries": [
+    {
+      "keywords": ["software engineer", "python developer", "ai engineer"],
+      "locations": ["milan", "northern italy", "germany", "poland"],
+      "remote": true,
+      "limit": 100
+    }
+  ],
+  "filters": {
+    "locations": ["milan", "northern italy", "germany", "poland"],
+    "remote_ok": true,
+    "languages": ["en", "it"],
+    "exclude_seniority": true,
+    "max_age_days": 45,
+    "blocklist": []
+  },
+  "sources": {
+    "greenhouse": {
+      "enabled": false,
+      "board_tokens": []
+    },
+    "lever": {
+      "enabled": false,
+      "companies": []
+    },
+    "eures": {
+      "enabled": false
+    },
+    "adzuna": {
+      "enabled": false,
+      "countries": ["it", "de", "pl"]
+    },
+    "arbeitsagentur": {
+      "enabled": false
+    },
+    "justjoin": {
+      "enabled": false
+    },
+    "nofluffjobs": {
+      "enabled": false
+    },
+    "arbeitnow": {
+      "enabled": false
+    },
+    "remotive": {
+      "enabled": false
+    },
+    "remoteok": {
+      "enabled": false
+    },
+    "himalayas": {
+      "enabled": false
+    },
+    "welcometothejungle": {
+      "enabled": false
+    }
+  },
+  "alerts": {
+    "imap_host": "",
+    "imap_user": "",
+    "mailbox": "INBOX",
+    "subject_patterns": ["job alert", "new jobs", "offre", "stellenangebot"]
+  }
+}

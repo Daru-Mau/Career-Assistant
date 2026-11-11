@@ -38,6 +38,19 @@ __pycache__/
 # === Generated / derivative outputs =============================
 *.docx
 
+# === Job discovery automation (private) ========================
+discoveries/
+scripts/jobs/job_sources.json
+jobs.db
+*.sqlite3
+*.db-wal
+*.db-shm
+browser-profiles/
+screenshots/
+.env
+.env.*
+secrets/
+
 # === OS noise ===================================================
 .DS_Store
 Thumbs.db
