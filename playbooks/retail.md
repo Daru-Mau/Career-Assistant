@@ -5,8 +5,8 @@
 Emphasize:
 
 - multilingual customer communication
-- product comprehension
-- active selling skills
+- product comprehension and willingness to learn product details
+- sales support, without claiming active selling experience
 - reliability and punctuality
 - adaptability to varying shifts
 - detail-oriented approach
@@ -19,16 +19,15 @@ One page.
 
 ## Transferable Evidence
 
-From CV:
+From CV (verify before use):
 
-- "carry out active selling"
-- "order products"
-- "product comprehension"
-- "guarantee customer satisfaction"
-- "identify customer's needs"
-- "flexibility, adaptability and managing multiple priorities"
-- "analytical thinking and problem solving"
-- "detail oriented"
+- Languages: Spanish native, English C1 (TOEFL certified), Italian B2, German and French working knowledge.
+- Declared soft skills: Reliability, Teamwork, Adaptability, Attention to Detail, Problem Solving.
+- Worked in multidisciplinary teams on software and design projects.
+- Attention to detail shown in data curation and in technical documentation.
+- Conducted a paired user study following a structured protocol, interacting with participants.
+
+The CV has no direct retail, sales, cash handling or inventory experience. Do not present academic projects or study participants as shop floor work.
 
 ## Keywords
 

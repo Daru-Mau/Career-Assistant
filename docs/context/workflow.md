@@ -10,7 +10,7 @@
 3. User decides to proceed
 4. `/prepare-application`
    - Read application_workflow.md, career_preferences.md, profile_index.md, relevant playbooks, templates
-   - Create job_offers/<company-role>/job_description.md and applications/<company-role>/ with 6 artifacts
+   - Create job_offers/<company-role>/job_description.md and applications/01-preparing/<created>-<company-role>/ with 6 artifacts
    - Run scripts/build_cv.py to generate <cv_stem>.pdf + <cl_stem>.pdf
    - Set application.yaml status: preparation
    - Do NOT touch the tracker
@@ -18,6 +18,7 @@
 6. `/mark-applied`
    - Update application.yaml (status: applied, date_applied: YYYY-MM-DD)
    - Insert new row at the top of tracking/JobTracker.csv data rows (CSV, not XLSX or XLSM); dates in M/D/YYYY
+   - Move the folder from applications/01-preparing/ to applications/02-applied/
    - Only after explicit confirmation
 
 ## Post-submission flow
@@ -26,6 +27,7 @@
 2. `/update-status`
    - Update application.yaml status (lowercase enum) + bump last_updated
    - Update tracking/JobTracker.csv Status column of that row (Rejected / Interview Scheduled / Withdrawn)
+   - Move the folder between groups when the new status maps to a different one (rejected/withdrawn -> 03-closed; interview/offer stay in 02-applied)
    - Keep the row in place; never update one file without the other
 
 ## Discard flow
@@ -33,8 +35,8 @@
 1. User decides not to apply, or something prevents applying
 2. `/discard-application`
    - Review stage: nothing was created, nothing to delete
-   - Preparation stage: delete `job_offers/<company-role>/` and `applications/<company-role>/` after explicit confirmation; do NOT touch the tracker
-   - Applied stage: refuses deletion; on request marks the row as Withdrawn in JobTracker.csv and sets application.yaml status: withdrawn
+   - Preparation stage: delete `job_offers/<company-role>/` and `applications/01-preparing/<created>-<company-role>/` after explicit confirmation; do NOT touch the tracker
+   - Applied stage: refuses deletion; on request marks the row as Withdrawn in JobTracker.csv, sets application.yaml status: withdrawn, and moves the folder to applications/03-closed/
 
 ## "Done" checklist before calling an application ready
 

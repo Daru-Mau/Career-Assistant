@@ -8,7 +8,7 @@ Comparisons are made per request, in an offer-vs-offer space.
 
 `<company_a>-<role_a>_vs_<company_b>-<role_b>.md`
 
-Lowercase-hyphenated, matching the `job_offers/<company-role>/` convention.
+Lowercase-hyphenated, matching the `job_offers/<company-role>/` convention (the `applications/<group>/<created>-<company-role>/` folders carry the same `<company-role>` leaf).
 Example: `google-customer-engineer-ai-natives_vs_bending-spoons-security-engineer.md`.
 
 ## Lifecycle
@@ -18,7 +18,7 @@ Example: `google-customer-engineer-ai-natives_vs_bending-spoons-security-enginee
 - They are decision-support documents: recommendation and reasoning, not facts you
   have not witnessed.
 - The perks and details live in the individual files (`job_offers/<company-role>/`
-  and `applications/<company-role>/`); the comparison references them and does not
+  and `applications/<group>/<created>-<company-role>/`); the comparison references them and does not
   duplicate or edit them.
 - Public-opinion material (Glassdoor, Blind, company-issued docs, press) is folded in
   when useful, always labelled as crowd-sourced and third-party, with a date, never as

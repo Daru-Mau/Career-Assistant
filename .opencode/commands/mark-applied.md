@@ -16,7 +16,9 @@ Actions:
 
 1. Locate the correct application folder:
 
-applications/<company-role>/
+applications/<group>/<created>-<company-role>/
+
+It should currently live in `01-preparing/`. To find it, derive the `<company-role>` leaf (lowercase-hyphenated company + role, e.g. "NTT DATA Junior Cybersecurity System Engineer" becomes ntt-data-junior-cybersecurity-system-engineer) and glob for `applications/*/*-<company-role>` (any group, any `<created>` prefix).
 
 2. Update:
 
@@ -49,6 +51,10 @@ Insert a new row at the TOP of the data rows (directly below the header, row 3),
 - Date Applied (today in M/D/YYYY)
 - Application Method (LinkedIn / Email / Indeed / etc.)
 - Status (Applied)
+
+4. Relocate the folder to the group matching the new status (from `01-preparing/` to `02-applied/`):
+
+applications/02-applied/<created>-<company-role>/
 
 Rules:
 

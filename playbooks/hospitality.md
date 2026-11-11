@@ -5,7 +5,7 @@
 Emphasize:
 
 - multilingual communication (list your actual languages and levels)
-- customer-facing reliability
+- reliability in customer-facing contexts, only where it can be evidenced
 - adaptability in fast-paced environments
 - teamwork and collaboration
 - attention to detail
@@ -18,15 +18,14 @@ One page.
 
 ## Transferable Evidence
 
-From CV:
+From CV (verify before use):
 
-- "guarantee customer satisfaction"
-- "flexibility, adaptability and managing multiple priorities"
-- "act reliably"
-- "identify customer's needs"
-- "teamwork principles"
-- "detail oriented"
-- "analytical thinking and problem solving"
+- Languages: Spanish native, English C1 (TOEFL certified), Italian B2, German and French working knowledge.
+- Declared soft skills: Reliability, Teamwork, Adaptability, Attention to Detail, Problem Solving.
+- Conducted a paired user study following a structured protocol, interacting with participants.
+- Worked in multidisciplinary teams on software and design projects.
+
+The CV has no direct restaurant, hotel, bar or customer-service employment. Lead with languages, reliability and willingness to learn. Do not present study participants as paying customers.
 
 ## Keywords
 

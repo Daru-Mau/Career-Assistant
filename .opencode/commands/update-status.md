@@ -14,9 +14,9 @@ Before updating, consult:
 
 Locate the application folder:
 
-applications/<company-role>/
+applications/<group>/<created>-<company-role>/
 
-If the user gave only the company and role, derive the folder name with the lowercase-hyphenated convention (e.g. "NTT DATA Junior Cybersecurity System Engineer" becomes ntt-data-junior-cybersecurity-system-engineer). If no folder matches, tell the user and stop.
+If the user gave only the company and role, derive the `<company-role>` leaf with the lowercase-hyphenated convention (e.g. "NTT DATA Junior Cybersecurity System Engineer" becomes ntt-data-junior-cybersecurity-system-engineer), then glob for `applications/*/*-<company-role>` (any group, any `<created>` prefix). If no folder matches, tell the user and stop.
 
 Check for `application.yaml`:
 
@@ -29,7 +29,7 @@ Once both files exist, mirror the outcome in both:
 
 1. Update:
 
-applications/<company-role>/application.yaml
+applications/<group>/<created>-<company-role>/application.yaml
 
 set status to the lowercase enum value matching the reported outcome and bump last_updated:
 
@@ -57,6 +57,11 @@ Mappings summary:
 | interview | interview | Interview Scheduled |
 | offer | offer | Applied (until accepted) |
 | withdrawal | withdrawn | Withdrawn |
+
+3. Relocate the folder to the group matching the new status:
+
+- rejected, withdrawn -> move to `applications/03-closed/<created>-<company-role>/`
+- interview, offer -> stays in `applications/02-applied/` (no move)
 
 Rules:
 

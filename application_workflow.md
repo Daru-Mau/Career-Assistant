@@ -49,6 +49,7 @@ Examples:
 - phd.md
 - hospitality.md
 - retail.md
+- entry_level.md
 
 Multiple playbooks can be combined when appropriate.
 
@@ -98,7 +99,7 @@ Gaps must be honest and never hidden.
 Create:
 
 ```
-applications/<company-role>/
+applications/<group>/<created>-<company-role>/
 ```
 
 Generate:
@@ -154,7 +155,7 @@ Metadata.
 After the artifacts above are written, run:
 
 ```
-python.exe scripts/build_cv.py <company-role>
+python.exe scripts/build_cv.py "<group>/<created>-<company-role>"
 ```
 
 to produce `<cv_stem>.pdf` and `<cl_stem>.pdf` from the base CV + cv_changes.md + cover_letter.md (stems and the base CV filename come from `config.json`).

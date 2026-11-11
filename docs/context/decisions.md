@@ -10,9 +10,15 @@ Inferred from the repo structure and documents. Not all have written rationale; 
 
 ## Separation of job offers from generated material
 
-- **What:** job_offers/<company-role>/job_description.md is saved separately from applications/<company-role>/
+- **What:** job_offers/<company-role>/job_description.md is saved separately from applications/<group>/<created>-<company-role>/
 - **Why:** applications become a historical knowledge base; the original posting stays immutable and reusable for analysis
 - **Discarded:** embedding the JD inside each generated doc
+
+## Filesystem-level application sorting
+
+- **What:** applications/ are physically organized as `applications/<group>/<created>-<company-role>/` with three status groups (01-preparing, 02-applied, 03-closed) and a YYYY-MM-DD name prefix from application.yaml `created`
+- **Why:** the previous flat alphabetical layout hid newly generated applications; folders now sort by status group first and by generation date within a group in any file explorer, without relying on an index or the tracker
+- **Discarded:** an index README + listing script (added to a flat layout) that described the order instead of providing it at the filesystem level
 
 ## Playbooks as role-specific guidance
 

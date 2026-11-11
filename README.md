@@ -60,8 +60,8 @@ The flow is driven by opencode commands, run inside the repo:
 | Command | What it does |
 |---|---|
 | `/review-job` | Analyzes a job description against your profile, creates nothing |
-| `/prepare-application` | Creates `job_offers/<company-role>/` and `applications/<company-role>/`, writes 6 artifacts, builds the PDFs |
-| `/mark-applied` | Updates `application.yaml` and adds a row to `tracking/JobTracker.csv` after you confirm submission |
+| `/prepare-application` | Creates `job_offers/<company-role>/` and `applications/<group>/<created>-<company-role>/`, writes 6 artifacts, builds the PDFs |
+| `/mark-applied` | Updates `application.yaml`, adds a row to `tracking/JobTracker.csv`, and moves the folder to `applications/02-applied/` after you confirm submission |
 | `/update-status` | Mirrors an outcome (rejected, interview, offer, withdrawn) into `application.yaml` and the tracker |
 | `/discard-application` | Removes unsubmitted application folders, or marks a submitted row as Withdrawn |
 
@@ -70,7 +70,7 @@ The three gates are strict: review creates nothing, preparation does not touch t
 Steps for a typical application:
 
 1. Paste a job description and run `/review-job`.
-2. Decide to proceed, then run `/prepare-application` to generate analysis, fit assessment, CV changes, cover letter, interview topics, and the YAML metadata, running `python scripts/build_cv.py <company-role>` to produce your CV + cover letter PDFs.
+2. Decide to proceed, then run `/prepare-application` to generate analysis, fit assessment, CV changes, cover letter, interview topics, and the YAML metadata, running `python scripts/build_cv.py "<group>/<created>-<company-role>"` to produce your CV + cover letter PDFs.
 3. Confirm you submitted, then run `/mark-applied`.
 4. Report outcomes as they happen and run `/update-status`.
 

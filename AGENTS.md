@@ -117,7 +117,7 @@ Actions:
 Create:
 
 job_offers/<company-role>/
-applications/<company-role>/
+applications/<group>/<created>-<company-role>/
 
 Save:
 
@@ -125,7 +125,15 @@ job_offers/<company-role>/job_description.md
 
 Generate:
 
-applications/<company-role>/
+applications/<group>/<created>-<company-role>/
+
+The application folder lives inside a status group:
+
+- `01-preparing/` for status `preparation`
+- `02-applied/` for `applied | interview | offer`
+- `03-closed/` for `rejected | withdrawn`
+
+`<created>` is the generation date from `application.yaml` (YYYY-MM-DD). It keeps the folder stable; only the group changes as the status moves. Within a group, folders sort by the YYYY-MM-DD name prefix (chronological, newest-first when sorted by name descending in a file explorer).
 
 ### analysis.md
 
@@ -160,17 +168,17 @@ status: preparation
 match_score:
 language:
 playbooks:
-  - {{ PLAYBOOK_1 }}  # e.g. software_engineer.md, robotics.md, phd.md, hci.md, data_science.md, hospitality.md, retail.md
-created:
+  - {{ PLAYBOOK_1 }}  # e.g. software_engineer.md, robotics.md, phd.md, hci.md, data_science.md, hospitality.md, retail.md, entry_level.md
+created: {{ YYYY-MM-DD }}  # must match the date prefix used in the folder name
 last_updated:
 
 ### <cv_stem>.pdf + <cl_stem>.pdf
 
 After the six application files above are written, run the build script to generate the printable PDFs:
 
-python.exe scripts/build_cv.py <company-role>
+python.exe scripts/build_cv.py "<group>/<created>-<company-role>"
 
-The stems and the base CV filename come from `config.json` (`cv_stem`, `cl_stem`, `base_cv_file`). The script reads profile/<base_cv_file> (facts) and applications/<company-role>/cv_changes.md (tailoring), renders <cv_stem>.html and <cl_stem>.html, converts both to PDF with Edge headless, and verifies them with PyMuPDF (page count soft limit, no leftover placeholders).
+The stems and the base CV filename come from `config.json` (`cv_stem`, `cl_stem`, `base_cv_file`). The script reads profile/<base_cv_file> (facts) and applications/<group>/<created>-<company-role>/cv_changes.md (tailoring), renders <cv_stem>.html and <cl_stem>.html, converts both to PDF with Edge headless, and verifies them with PyMuPDF (page count soft limit, no leftover placeholders).
 
 Do NOT update the application tracker yet.
 
@@ -200,12 +208,16 @@ Insert the new row at the top of the data rows (below the header), keeping the t
 
 2. Update:
 
-applications/<company-role>/application.yaml
+applications/<group>/<created>-<company-role>/application.yaml
 
 with:
 
 status: applied
 date_applied: YYYY-MM-DD  # canonical format in application.yaml; M/D/YYYY is used only in JobTracker.csv
+
+3. Relocate the folder to the group matching the new status (from `01-preparing/` to `02-applied/`):
+
+applications/02-applied/<created>-<company-role>/
 
 Never assume an application was submitted.
 
@@ -226,7 +238,7 @@ Both files must always mirror the same outcome. Never update one without the oth
 
 1. Update:
 
-applications/<company-role>/application.yaml
+applications/<group>/<created>-<company-role>/application.yaml
 
 set status (lowercase enum) and bump last_updated:
 
@@ -245,6 +257,11 @@ set the Status column of that row, reusing existing dropdown values (Rejected, I
 - interview -> Interview Scheduled
 - offer -> keep Applied until accepted, then record manually
 - withdrawn -> Withdrawn
+
+3. Relocate the folder to the group matching the new status:
+
+- rejected, withdrawn -> `applications/03-closed/<created>-<company-role>/`
+- interview, offer -> stays in `applications/02-applied/`
 
 Only update status after the user explicitly states the outcome. Never guess from silence.
 

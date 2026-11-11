@@ -2,7 +2,10 @@
 
 ## File naming
 
-- Application folders: `job_offers/<company-role>/` and `applications/<company-role>/` (lowercase-hyphenated company + role, e.g. `acme-software-engineer`)
+- Application folders: `job_offers/<company-role>/` (unchanged) and `applications/<group>/<created>-<company-role>/`
+- `<company-role>` is lowercase-hyphenated (e.g. `acme-software-engineer`); `<created>` is the application.yaml generation date (YYYY-MM-DD)
+- Status groups under `applications/`: `01-preparing/` (preparation), `02-applied/` (applied | interview | offer), `03-closed/` (rejected | withdrawn)
+- The `<created>` prefix is stable and never edited; a status change only moves the folder between groups, never renames it
 - Generated artifacts always named: analysis.md, fit_assessment.md, cv_changes.md, cover_letter.md, interview_topics.md, application.yaml
 - Playbooks: lowercase_snake (robotics.md, data_science.md)
 
@@ -11,6 +14,10 @@
 Every application folder contains exactly 6 generated markdown/YAML files: analysis.md, fit_assessment.md, cv_changes.md, cover_letter.md, interview_topics.md, application.yaml.
 
 After prepare-application runs the build script (scripts/build_cv.py), the folder also contains 4 build outputs: `<cv_stem>.html`, `<cv_stem>.pdf`, `<cl_stem>.html`, `<cl_stem>.pdf` (filenames from config.json). They are generated artifacts, never edited by hand.
+
+## Folder sorting
+
+Applications are physically sorted at the filesystem level: status groups first (`01-preparing/`, `02-applied/`, `03-closed/` in that order), then by the `YYYY-MM-DD` name prefix within each group (newest-first when sorted by name descending in a file explorer). Do not rename a folder to change its order; change its status with /mark-applied or /update-status and move it between groups instead.
 
 ## Writing rules
 

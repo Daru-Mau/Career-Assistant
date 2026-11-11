@@ -2,19 +2,22 @@
 """Build and verify a per-application PDF CV.
 
 Usage:
-    python build_cv.py <company-role>
+    python build_cv.py "<group>/<created>-<company-role>"
+
+where <group> is one of 01-preparing / 02-applied / 03-closed (the arg is
+joined onto applications/, so it can be a nested relative path).
 
 Reads:
     profile/<base_cv_file>              (base CV, source of truth -- filename from config.json)
-    applications/<company-role>/cv_changes.md (tailored overrides)
-    applications/<company-role>/application.yaml (metadata)
+    applications/<group>/<created>-<company-role>/cv_changes.md (tailored overrides)
+    applications/<group>/<created>-<company-role>/application.yaml (metadata)
     templates/cv_template.html          (canonical layout)
 
 Writes (stems <cv_stem>/<cl_stem> come from config.json):
-    applications/<company-role>/<cv_stem>.html
-    applications/<company-role>/<cv_stem>.pdf
-    applications/<company-role>/<cl_stem>.html
-    applications/<company-role>/<cl_stem>.pdf
+    applications/<group>/<created>-<company-role>/<cv_stem>.html
+    applications/<group>/<created>-<company-role>/<cv_stem>.pdf
+    applications/<group>/<created>-<company-role>/<cl_stem>.html
+    applications/<group>/<created>-<company-role>/<cl_stem>.pdf
 
 Verifies with PyMuPDF: page count, no placeholder leftovers, presence of
 ATS keywords. Facts that cannot be confidently overridden fall back to the
@@ -1039,7 +1042,7 @@ def build_cover_letter(app_dir, app_name, base, lang="en"):
 
 def main():
     if len(sys.argv) < 2:
-        print("Usage: python build_cv.py <company-role>", file=sys.stderr)
+        print('Usage: python build_cv.py "<group>/<created>-<company-role>"', file=sys.stderr)
         sys.exit(2)
     app = sys.argv[1]
     app_dir = os.path.join(REPO, "applications", app)

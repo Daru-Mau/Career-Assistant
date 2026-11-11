@@ -4,7 +4,7 @@ description: Cleanly discard a job review or prepared application the user decid
 
 The user has decided not to pursue an application (or could not apply) and wants it removed cleanly.
 
-Locate the application by the folder name the user provides (applications/<company-role>/). If the user only gave the company and role, derive the folder name using the lowercase-hyphenated convention (e.g. "Atlante AI Engineer Intern" becomes atlante-ai-engineer-intern).
+Locate the application by the folder name the user provides (applications/<group>/<created>-<company-role>/). If the user only gave the company and role, derive the `<company-role>` leaf using the lowercase-hyphenated convention (e.g. "Atlante AI Engineer Intern" becomes atlante-ai-engineer-intern), then glob for `applications/*/*-<company-role>` (any group, any `<created>` prefix).
 
 Before acting, consult:
 
@@ -20,11 +20,11 @@ Determine the stage and act accordingly:
 - Confirm to the user that the opportunity is simply dropped and that no files or tracker rows exist.
 - Do not create, modify, or delete anything.
 
-## 2. Preparation stage (applications/<company-role>/ exists and application.yaml has status: preparation)
+## 2. Preparation stage (applications/01-preparing/<created>-<company-role>/ exists and application.yaml has status: preparation)
 
 - This application was never submitted, so it has no tracker row.
 - Confirm the deletion with the user before proceeding.
-- Delete job_offers/<company-role>/ and applications/<company-role>/ (whichever exist).
+- Delete job_offers/<company-role>/ and applications/01-preparing/<created>-<company-role>/ (whichever exist).
 - Do NOT touch tracking/JobTracker.csv.
 
 ## 3. Applied stage (a row exists in tracking/JobTracker.csv, or application.yaml has status: applied or later)
@@ -33,7 +33,8 @@ Determine the stage and act accordingly:
 - Explain to the user that this is a withdrawal, not a discard.
 - If the user confirms they want to withdraw:
   - Update tracking/JobTracker.csv — set the Status column of that row to Withdrawn (reuse the existing dropdown value; keep the row in place).
-  - Update applications/<company-role>/application.yaml — set status: withdrawn.
+  - Update applications/<group>/<created>-<company-role>/application.yaml — set status: withdrawn.
+  - Relocate the folder to `applications/03-closed/<created>-<company-role>/`.
 - Do not delete any files.
 
 Rules:

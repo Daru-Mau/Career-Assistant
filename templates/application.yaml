@@ -9,6 +9,6 @@ currency: {{ EUR | USD | CHF }}
 language: {{ LANGUAGE }}  # language of the job description (e.g. English, Italian, German); all generated files use this language
 playbooks:
   - {{ PLAYBOOK_1 }}
-created: {{ YYYY-MM-DD }}
+created: {{ YYYY-MM-DD }}  # must match the date prefix in the folder name
 last_updated: {{ YYYY-MM-DD }}
 # date_applied: YYYY-MM-DD  # added by /mark-applied; canonical yaml format (M/D/YYYY is used only in JobTracker.csv)

@@ -46,7 +46,7 @@ Note on current state: only `JobTracker.csv` and `JobTracker_backup.xlsx` exist 
 To refresh the XLSX after opencode updates the CSV:
 
 1. Open `JobTracker.csv` in Excel.
-2. Select the data range (columns A–K).
+2. Select the data range (columns A–M).
 3. Apply the same table style and conditional formatting as before.
 4. Save as `JobTracker.xlsx`.
 
@@ -54,7 +54,7 @@ To refresh the XLSX after opencode updates the CSV:
 
 ## Column Structure
 
-Both CSV and XLSX use the same 11 columns in the Job Details section:
+Both CSV and XLSX use the same 13 columns in the Job Details section:
 
 | # | Column | Description |
 |---|---|---|
@@ -63,12 +63,14 @@ Both CSV and XLSX use the same 11 columns in the Job Details section:
 | C | Role | Employment type (Full-Time, Part-Time, Internship) |
 | D | Modality | On-Site, Remote, Hybrid |
 | E | Priority Level | Top Choice, Consider, Low interest |
-| F | Salary | Compensation (optional) |
-| G | Location | City, Country |
-| H | Job Listing | URL or source (optional) |
-| I | Date Applied | Date in M/D/YYYY format |
-| J | Application Method | LinkedIn, Email, Indeed, etc. |
-| K | Status | Applied, Rejected, Interview Scheduled, Withdrawn, No Response |
+| F | Fit Score (x/10) | Candidate-objective fit score (from application.yaml fit_score) |
+| G | Salary | Compensation (optional) |
+| H | Currency | Salary currency (EUR, CHF, PLN, SEK, USD...) |
+| I | Location | City, Country |
+| J | Job Listing | URL or source (optional) |
+| K | Date Applied | Date in M/D/YYYY format |
+| L | Application Method | LinkedIn, Email, Indeed, etc. |
+| M | Status | Applied, Rejected, Interview Scheduled, Withdrawn, No Response |
 
 The top section (rows 1–10) contains reference data with dropdown choices.
 
@@ -118,17 +120,18 @@ job_offers/
     └── job_description.md
 
 applications/
-└── <company-role>/
-    ├── analysis.md
-    ├── fit_assessment.md
-    ├── cv_changes.md
-    ├── cover_letter.md
-    ├── interview_topics.md
-    ├── application.yaml
-    ├── <cv_stem>.html
-    ├── <cv_stem>.pdf
-    ├── <cl_stem>.html
-    └── <cl_stem>.pdf
+└── <group>/                          (01-preparing, 02-applied, 03-closed)
+    └── <created>-<company-role>/
+        ├── analysis.md
+        ├── fit_assessment.md
+        ├── cv_changes.md
+        ├── cover_letter.md
+        ├── interview_topics.md
+        ├── application.yaml
+        ├── <cv_stem>.html
+        ├── <cv_stem>.pdf
+        ├── <cl_stem>.html
+        └── <cl_stem>.pdf
 
 The tracker provides the overview.
 The application folder contains the details.

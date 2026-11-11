@@ -18,7 +18,9 @@ Create:
 
 job_offers/<company-role>/
 
-applications/<company-role>/
+applications/<group>/<created>-<company-role>/
+
+The `<group>` is `01-preparing` for a fresh application. Choose today's date (YYYY-MM-DD) as `<created>` and write it into `application.yaml` (`created:` field); the folder name must match it exactly, so the application sorts newest-first inside its group.
 
 Save the original job description:
 
@@ -26,7 +28,7 @@ job_offers/<company-role>/job_description.md
 
 Generate inside:
 
-applications/<company-role>/
+applications/<group>/<created>-<company-role>/
 
 ## analysis.md
 
@@ -91,14 +93,14 @@ Rules:
 After all six files above exist, generate the printable PDFs by running the build script:
 
 ```bash
-python.exe scripts/build_cv.py <company-role>
+python.exe scripts/build_cv.py "<group>/<created>-<company-role>"
 ```
 
 The script (stems and base CV filename come from config.json):
 
-1. Reads `profile/<base_cv_file>` (facts) + `applications/<company-role>/cv_changes.md` (tailoring).
-2. Renders `applications/<company-role>/<cv_stem>.html` and converts it to `<cv_stem>.pdf` with Edge headless.
-3. Reads `applications/<company-role>/cover_letter.md`, renders `<cl_stem>.html`, and converts it to `<cl_stem>.pdf`.
+1. Reads `profile/<base_cv_file>` (facts) + `applications/<group>/<created>-<company-role>/cv_changes.md` (tailoring).
+2. Renders `applications/<group>/<created>-<company-role>/<cv_stem>.html` and converts it to `<cv_stem>.pdf` with Edge headless.
+3. Reads `applications/<group>/<created>-<company-role>/cover_letter.md`, renders `<cl_stem>.html`, and converts it to `<cl_stem>.pdf`.
 4. Verifies both PDFs with PyMuPDF: page count (soft limit, from application.yaml playbooks), no leftover `{{ }}` placeholders.
 
 Prerequisites:

@@ -15,10 +15,10 @@
 
 ## Entities
 
-- **Application folder**: applications/<company-role>/ containing 6 markdown/YAML artifacts, plus generated <cv_stem>.html/<cv_stem>.pdf and <cl_stem>.html/<cl_stem>.pdf after the build script
+- **Application folder**: applications/<group>/<created>-<company-role>/ containing 6 markdown/YAML artifacts, plus generated <cv_stem>.html/<cv_stem>.pdf and <cl_stem>.html/<cl_stem>.pdf after the build script
 - **Job offer folder**: job_offers/<company-role>/ holding job_description.md
 - **application.yaml**: per-application metadata (company, role, status, match_score, fit_score, salary, currency, language, playbooks, dates)
-- **Playbooks set**: software_engineer, robotics, hci, data_science, phd, hospitality, retail
+- **Playbooks set**: software_engineer, robotics, hci, data_science, phd, hospitality, retail, entry_level
 - **Tracker files**: JobTracker.csv (source of truth), JobTracker.xlsx (export), JobTracker_backup.xlsx (fallback). JobTracker.xlsm is outdated from a previous iteration and not used.
 
 ## Internal acronyms / shorthand
